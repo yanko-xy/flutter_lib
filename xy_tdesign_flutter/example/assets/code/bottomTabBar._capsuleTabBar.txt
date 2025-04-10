@@ -1,0 +1,35 @@
+
+  Widget _capsuleTabBar(BuildContext context) {
+    return TDBottomTabBar(
+      TDBottomTabBarBasicType.iconText,
+      componentType: TDBottomTabBarComponentType.label,
+      outlineType: TDBottomTabBarOutlineType.capsule,
+      useVerticalDivider: true,
+      navigationTabs: [
+        TDBottomTabBarTabConfig(
+          selectedIcon: _selectedIcon,
+          unselectedIcon: _unSelectedIcon,
+          tabText: '标签',
+          onTap: () {
+            onTapTab(context, '标签1');
+          },
+        ),
+        TDBottomTabBarTabConfig(
+          selectedIcon: _selectedIcon,
+          unselectedIcon: _unSelectedIcon,
+          tabText: '标签',
+          onTap: () {
+            onTapTab(context, '标签2');
+          },
+        ),
+        TDBottomTabBarTabConfig(
+          selectedIcon: _selectedIcon,
+          unselectedIcon: _unSelectedIcon,
+          tabText: '标签',
+          onTap: () {
+            onTapTab(context, '标签3');
+          },
+        ),
+      ],
+    );
+  }

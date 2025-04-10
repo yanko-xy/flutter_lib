@@ -1,0 +1,22 @@
+
+  Widget _actionImageViewer(BuildContext context) {
+    var delImages = [
+      'https://tdesign.gtimg.com/mobile/demos/swiper1.png',
+      'https://tdesign.gtimg.com/mobile/demos/swiper2.png',
+    ];
+    return TDButton(
+      type: TDButtonType.ghost,
+      theme: TDButtonTheme.primary,
+      isBlock: true,
+      size: TDButtonSize.large,
+      text: '带操作图片预览',
+      onTap: () {
+        TDImageViewer.showImageViewer(
+          context: context,
+          images: delImages,
+          showIndex: true,
+          deleteBtn: true,
+        );
+      },
+    );
+  }
