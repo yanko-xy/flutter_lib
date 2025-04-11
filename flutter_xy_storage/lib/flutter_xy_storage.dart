@@ -1,52 +1,38 @@
 library flutter_xy_storage;
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class XYStoreage {
-  static late FlutterSecureStorage? _storage;
-  static late SharedPreferences _syncBox; // 提前打开的 Hive box
+  static FlutterSecureStorage? storage;
 
-  XYStoreage._();
-
-  static write({required String key, required String value}) async {
-    if (_storage == null) {
-      throw "storage is null, init() first";
+  XYStoreage._internal() {
+    if (storage == null) {
+      storage = const FlutterSecureStorage();
     }
-    await _storage!.write(key: key, value: value);
   }
 
-  static writeSync({required String key, required String value}) async {
-    if (_storage == null) {
+  static write({required String key, required String value}) async {
+    if (storage == null) {
       throw "storage is null, init() first";
     }
-    await _storage!.write(key: key, value: value);
+    await storage!.write(key: key, value: value);
   }
 
   static read({required String key}) async {
-    if (_storage == null) {
+    if (storage == null) {
       throw "storage is null, init() first";
     }
-    return await _storage!.read(key: key);
+    return await storage!.read(key: key);
   }
 
-  static Future<void> writeSecure(
-      {required String key, required String value}) async {
-    if (_storage == null) {
+  static delete({required String key}) async {
+    if (storage == null) {
       throw "storage is null, init() first";
     }
-    await _storage!.write(key: key, value: value);
+    return await storage!.delete(key: key);
   }
 
-  static Future<dynamic> readSecure({required String key}) async {
-    if (_storage == null) {
-      throw "storage is null, init() first";
-    }
-    return await _storage!.read(key: key);
-  }
-
-  static Future<void> init() async {
-    _storage = const FlutterSecureStorage();
-    _syncBox = await SharedPreferences.getInstance();
+  static init() {
+    XYStoreage._internal();
   }
 }
