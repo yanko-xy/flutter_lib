@@ -53,6 +53,7 @@ class _XYFillMarkdownState extends State<XYFillMarkdown> {
     return MarkdownWidget(
       selectable: false,
       shrinkWrap: widget.shrinkWrap,
+      padding: EdgeInsets.zero,
       data: controller.getText(),
       config: MarkdownConfig(configs: [
         PConfig(

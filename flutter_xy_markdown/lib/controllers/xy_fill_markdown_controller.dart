@@ -30,6 +30,16 @@ class XYFillMarkdownController extends ChangeNotifier {
     initFill();
   }
 
+  void setText(String text) {
+    _text = text;
+    fillMap.clear();
+    strList.clear();
+    if (needFillIndex) {
+      _text = _addHrefToLinks(_text);
+    }
+    initFill();
+  }
+
   // 初始化挖空
   void initFill() {
     // 预处理
